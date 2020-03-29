@@ -53,5 +53,35 @@ namespace AreaCalculatorTest.Calculators
             var ex = Assert.Throws<ArgumentException>(() => _areaCalculator.CalculateTriangleArea(aSide , bSide, - 1));
             Assert.AreEqual("All sides should be greater than 0", ex.Message);
         }
+        
+        [Test]
+        public void IsTriangleRight_Success_true()
+        {
+            var aSide = 3;
+            var bSide = 4;
+            var cSide = 5;
+            var result = _areaCalculator.IsRightShape(aSide, bSide, cSide);
+            Assert.AreEqual(true, result);
+        }
+
+        [Test]
+        public void IsTriangleRight_Success_false()
+        {
+            var aSide = 3;
+            var bSide = 4;
+            var cSide = 4;
+            var result = _areaCalculator.IsRightShape(aSide, bSide, cSide);
+            Assert.AreEqual(true, result);
+        }
+
+        [Test]
+        public void IsTriangleRight_ArgumentExcetion()
+        {
+            var aSide = -3;
+            var bSide = 4;
+            var cSide = 4;
+            var ex = Assert.Throws<ArgumentException>(() => _areaCalculator.IsRightShape(aSide, bSide, cSide));
+            Assert.AreEqual("All sides should be greater than 0", ex.Message);
+        }
     }
 }
